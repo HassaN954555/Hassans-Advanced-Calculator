@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan's Advanced Scientific Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #8c9696;
+            margin: 0;
+        }
+        .header {
+            width: 100%;
+            background: linear-gradient(to right, #000000, #ff4b2b);
+            padding: 15px 0;
+            text-align: center;
+        }
+        .header h1 {
+            color: white;
+            font-size: 3em;
+            margin: 0;
+        }
+        .calculator {
+            width: 400px;
+            background: #3d3d3d;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            color: white;
+        }
+        input, select {
+            width: 100%;
+            height: 40px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            height: 50px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #ff8c00;
+            color: white;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #e07b00;
+        }
+        .contact {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #837d7d;
+            margin-top: 60px; 
+        }
+        .contact form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #968888;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .contact form input, .contact form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #000;
+            border-radius: 8px;
+        }
+        .contact form button {
+            padding: 15px 30px;
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hassan's Advanced Calculator</h1>
+    </div>
+    <div class="calculator">
+        <h2>Scientific Calculator</h2>
+        <label>Enter First Number:</label>
+        <input type="number" id="num1">
+        <label>Enter Second Number (If needed):</label>
+        <input type="number" id="num2">
+        <label>Select Operation:</label>
+        <select id="operation">
+            <option value="add">Addition (+)</option>
+            <option value="subtract">Subtraction (-)</option>
+            <option value="multiply">Multiplication (×)</option>
+            <option value="divide">Division (÷)</option>
+            <option value="power">Exponentiation (x^y)</option>
+            <option value="sqrt">Square Root (√x)</option>
+            <option value="log">Logarithm (log)</option>
+            <option value="sin">Sin (sin x)</option>
+            <option value="cos">Cos (cos x)</option>
+            <option value="tan">Tan (tan x)</option>
+        </select>
+        <button onclick="calculate()">Calculate</button>
+        <h3>Result: <span id="result"></span></h3>
+    </div>
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Your message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <script>
+        function calculate() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let operation = document.getElementById('operation').value;
+            let result;
+            
+            switch(operation) {
+                case 'add': result = num1 + num2; break;
+                case 'subtract': result = num1 - num2; break;
+                case 'multiply': result = num1 * num2; break;
+                case 'divide': result = num2 !== 0 ? num1 / num2 : 'Error'; break;
+                case 'power': result = Math.pow(num1, num2); break;
+                case 'sqrt': result = Math.sqrt(num1); break;
+                case 'log': result = Math.log(num1); break;
+                case 'sin': result = Math.sin(num1); break;
+                case 'cos': result = Math.cos(num1); break;
+                case 'tan': result = Math.tan(num1); break;
+                default: result = 'Invalid';
+            }
+            
+            document.getElementById('result').innerText = result;
+        }
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            alert("Message Sent Successfully!");
+        });
+    </script>
+</body>
+</html>
